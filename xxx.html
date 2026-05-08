@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WillSir Technologies ZW - Where Technology Meets Trust</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --green:#1a4a2e;
+    --green-dark:#0f2d1c;
+    --green-mid:#2d6a45;
+    --accent:#f5a623;
+    --accent2:#e8834a;
+    --red:#c0392b;
+    --text:#1a1a1a;
+    --text-light:#555;
+    --text-muted:#888;
+    --bg:#fff;
+    --bg-light:#f8f8f6;
+    --bg-card:#f4f4f2;
+    --border:#e8e8e8;
+    --radius:12px;
+    --radius-sm:8px;
+  }
+  body{font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);background:var(--bg);overflow-x:hidden}
+  a{text-decoration:none;color:inherit}
+  img{max-width:100%;display:block}
+  button{cursor:pointer;font-family:inherit}
+
+  /* TOP BAR */
+  .topbar{background:var(--green-dark);color:#fff;font-size:12px;padding:8px 20px;display:flex;justify-content:space-between;align-items:center}
+  .topbar-center{flex:1;text-align:center}
+  .topbar-center a{color:#fff;text-decoration:underline;margin-left:8px}
+  .topbar-right{display:flex;gap:16px;align-items:center}
+  .topbar-right select{background:transparent;border:none;color:#fff;font-size:12px;cursor:pointer;font-family:inherit}
+
+  /* HEADER */
+  header{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;padding:0 24px}
+  .header-inner{max-width:1320px;margin:0 auto;display:flex;align-items:center;gap:20px;height:68px}
+  .logo{display:flex;align-items:center;gap:0;white-space:nowrap}
+  .logo img.logo-img{height:52px;width:auto;object-fit:contain;display:block}
+  .logo-fallback{width:52px;height:52px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px;font-weight:700}
+  nav{display:flex;align-items:center;gap:4px;margin:0 12px}
+  .nav-link{padding:8px 14px;font-size:13.5px;font-weight:500;color:var(--text);border-radius:6px;transition:.2s;white-space:nowrap;display:flex;align-items:center;gap:4px}
+  .nav-link:hover{background:var(--bg-light)}
+  .search-bar{flex:1;position:relative;max-width:420px}
+  .search-bar input{width:100%;padding:9px 40px 9px 16px;border:1.5px solid var(--border);border-radius:24px;font-size:13.5px;font-family:inherit;outline:none;transition:.2s}
+  .search-bar input:focus{border-color:var(--green)}
+  .search-bar button{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--text-muted);font-size:15px}
+  .header-actions{display:flex;align-items:center;gap:16px;margin-left:auto}
+  .header-btn{display:flex;align-items:center;gap:6px;font-size:13.5px;font-weight:500;color:var(--text);cursor:pointer;padding:6px 8px;border-radius:6px;transition:.2s;background:none;border:none}
+  .header-btn:hover{background:var(--bg-light)}
+  .cart-count{background:var(--green);color:#fff;border-radius:50%;width:18px;height:18px;font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:700}
+  .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border:none;background:none}
+  .hamburger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:.3s}
+
+  /* MOBILE NAV */
+  .mobile-nav{display:none;position:fixed;top:0;left:0;width:280px;height:100vh;background:#fff;z-index:200;padding:24px 20px;box-shadow:4px 0 20px rgba(0,0,0,.15);transform:translateX(-100%);transition:.3s}
+  .mobile-nav.open{transform:translateX(0)}
+  .mobile-nav-close{position:absolute;top:16px;right:16px;background:none;border:none;font-size:20px;cursor:pointer}
+  .mobile-nav .logo{margin-bottom:28px}
+  .mobile-nav a{display:block;padding:13px 0;font-size:15px;font-weight:500;border-bottom:1px solid var(--border);color:var(--text)}
+  .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:150}
+  .overlay.open{display:block}
+
+  /* ═══════════════════════════════════════
+     HERO — UPGRADED: deep velvet dark bg,
+     triple diagonal light rays like Hisense,
+     vivid green accent subtitle + button
+  ════════════════════════════════════════ */
+  .hero{
+    position:relative;
+    overflow:hidden;
+    min-height:460px;
+    display:flex;
+    align-items:center;
+    background:linear-gradient(140deg, #020d05 0%, #071a0c 20%, #0a2e16 45%, #103d1e 65%, #071a0c 85%, #020d05 100%);
+  }
+  /* triple overlapping diagonal light rays */
+  .hero::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:
+      linear-gradient(112deg, transparent 15%, rgba(46,185,90,.20) 38%, transparent 55%),
+      linear-gradient(68deg,  transparent 30%, rgba(28,150,65,.15) 52%, transparent 68%),
+      linear-gradient(125deg, transparent 50%, rgba(18,100,44,.12) 68%, transparent 82%);
+    pointer-events:none;
+  }
+  /* big radial glow top-right — Hisense bright spot energy */
+  .hero::after{
+    content:'';
+    position:absolute;
+    top:-150px; right:-80px;
+    width:680px; height:680px;
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(40,200,95,.22) 0%, rgba(20,120,55,.10) 38%, transparent 68%);
+    pointer-events:none;
+  }
+  .hero-inner{
+    max-width:1320px;
+    margin:0 auto;
+    padding:60px 40px;
+    display:flex;
+    align-items:center;
+    width:100%;
+    gap:40px;
+    position:relative;
+    z-index:2;
+  }
+  .hero-text{flex:1}
+  .hero-text h1{
+    font-size:clamp(28px,3.8vw,52px);
+    font-weight:700;
+    color:#ffffff;
+    line-height:1.15;
+    margin-bottom:16px;
+    text-shadow:0 2px 24px rgba(0,0,0,.4);
+  }
+  /* vivid green accent — like Hisense yellow but green */
+  .hero-text .hero-subtitle{
+    font-size:16px;
+    color:#6effa0;
+    margin-bottom:10px;
+    line-height:1.7;
+    max-width:400px;
+    font-weight:500;
+    letter-spacing:.01em;
+  }
+  .hero-text .hero-body{
+    font-size:13.5px;
+    color:rgba(255,255,255,.55);
+    margin-bottom:28px;
+    max-width:400px;
+    line-height:1.6;
+  }
+  .btn-primary{display:inline-flex;align-items:center;gap:8px;background:transparent;color:#6effa0;padding:12px 28px;border-radius:4px;font-size:14px;font-weight:600;border:2px solid rgba(110,255,160,.55);transition:.2s;cursor:pointer}
+  .btn-primary:hover{background:rgba(110,255,160,.12);border-color:#6effa0;color:#6effa0}
+  .hero-img{
+    flex:1;
+    max-width:560px;
+    display:flex;
+    justify-content:flex-end;
+    align-items:center;
+  }
+  .hero-img img{
+    width:100%;
+    max-height:360px;
+    object-fit:contain;
+    filter:drop-shadow(0 20px 60px rgba(0,0,0,.55));
+  }
+  /* currency switcher pills */
+  .hero-currency{
+    position:absolute;
+    right:0;
+    top:50%;
+    transform:translateY(-50%);
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+    z-index:5;
+  }
+  .hero-currency button{
+    background:rgba(20,90,45,.8);
+    color:#6effa0;
+    border:1px solid rgba(110,255,160,.25);
+    border-right:none;
+    padding:6px 10px;
+    font-size:11px;
+    font-weight:700;
+    cursor:pointer;
+    transition:.2s;
+    border-radius:3px 0 0 3px;
+  }
+  .hero-currency button.active{background:#6effa0;color:#020d05;border-color:#6effa0}
+  .hero-currency button:hover:not(.active){background:rgba(110,255,160,.15)}
+
+  /* CATEGORIES */
+  .section{padding:56px 24px}
+  .section-inner{max-width:1320px;margin:0 auto}
+  .section-title{font-size:22px;font-weight:700;margin-bottom:28px;color:var(--text)}
+
+  /* CATEGORY SECTION HEADER */
+  .cat-section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px}
+  .cat-section-header h2{font-size:22px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:10px}
+  .cat-section-header h2 i{color:var(--green-dark);font-size:20px}
+  .cat-section-header .view-all{font-size:13.5px;font-weight:600;color:var(--green-dark);border:1.5px solid var(--green-dark);padding:7px 16px;border-radius:20px;transition:.2s}
+  .cat-section-header .view-all:hover{background:var(--green-dark);color:#fff}
+
+  .categories-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+  .cat-card{border-radius:var(--radius);overflow:hidden;position:relative;aspect-ratio:3/4;cursor:pointer;transition:.25s}
+  .cat-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.12)}
+  .cat-card img{width:100%;height:100%;object-fit:cover}
+  .cat-label{position:absolute;top:14px;left:14px;font-size:14px;font-weight:700;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.3)}
+
+  /* ── PAGINATED 3-PER-ROW SLIDER ── */
+  .pag-wrap{position:relative}
+  .pag-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .pag-nav{display:flex;align-items:center;justify-content:flex-end;gap:10px;margin-top:20px}
+  .pag-btn{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--border);background:#fff;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s;color:var(--text);font-weight:700}
+  .pag-btn:hover:not(:disabled){border-color:var(--green-dark);background:var(--green-dark);color:#fff}
+  .pag-btn:disabled{opacity:.3;cursor:default}
+  .pag-dots{display:flex;gap:6px;align-items:center}
+  .pag-dot{width:7px;height:7px;border-radius:50%;background:var(--border);transition:.3s;border:none;padding:0;cursor:pointer}
+  .pag-dot.active{background:var(--green-dark);width:22px;border-radius:4px}
+
+  .pag-grid .product-card{min-width:unset}
+  .pag-grid .product-img{aspect-ratio:4/3}
+  .most-selling-pag .product-img{aspect-ratio:4/3}
+
+  /* PRODUCTS GRID */
+  .products-slider{display:flex;gap:16px;overflow-x:auto;padding-bottom:8px;scrollbar-width:none}
+  .products-slider::-webkit-scrollbar{display:none}
+  .products-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .product-card{background:#fff;border:1.5px solid var(--border);border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:.2s;position:relative}
+  .product-card:hover{border-color:#bbb;box-shadow:0 8px 24px rgba(0,0,0,.08);transform:translateY(-2px)}
+  .product-card.slider-card{min-width:260px;flex-shrink:0}
+  .product-img{background:var(--bg-card);aspect-ratio:1;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+  .product-img img{width:100%;height:100%;object-fit:cover;transition:.3s}
+  .product-card:hover .product-img img{transform:scale(1.04)}
+  .wishlist-btn{position:absolute;top:10px;right:10px;width:32px;height:32px;border-radius:50%;background:#fff;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--text-muted);transition:.2s;z-index:2}
+  .wishlist-btn:hover,.wishlist-btn.active{color:#e74c3c;border-color:#e74c3c}
+  .product-info{padding:14px}
+  .product-name{font-size:13.5px;font-weight:600;margin-bottom:4px;line-height:1.4}
+  .product-desc{font-size:12px;color:var(--text-muted);margin-bottom:8px;line-height:1.5}
+  .product-stars{display:flex;align-items:center;gap:4px;margin-bottom:10px}
+  .stars{color:var(--accent);font-size:12px}
+  .review-count{font-size:11px;color:var(--text-muted)}
+  .product-bottom{display:flex;align-items:center;justify-content:space-between}
+  .product-price{font-size:15px;font-weight:700}
+  .product-price sup{font-size:10px;font-weight:600}
+  .product-price .old-price{font-size:12px;color:var(--text-muted);text-decoration:line-through;font-weight:400;margin-left:4px}
+  .btn-cart{border:1.5px solid var(--text);background:#fff;padding:7px 14px;border-radius:20px;font-size:12.5px;font-weight:600;transition:.2s}
+  .btn-cart:hover{background:var(--green-dark);color:#fff;border-color:var(--green-dark)}
+
+  /* BRAND SECTION */
+  .brands-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .brand-card{background:var(--bg-light);border:1.5px solid var(--border);border-radius:var(--radius);padding:16px 20px;display:flex;align-items:center;gap:14px;cursor:pointer;transition:.2s}
+  .brand-card:hover{border-color:var(--green);background:#fff;box-shadow:0 4px 16px rgba(0,0,0,.06)}
+  .brand-icon{width:48px;height:48px;border-radius:50%;object-fit:contain;flex-shrink:0}
+  .brand-info .brand-name{font-size:14px;font-weight:600}
+  .brand-info .brand-sub{font-size:12px;color:var(--text-muted);margin-top:2px}
+
+  /* SAVINGS SECTION */
+  .savings-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .savings-card{border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:.2s}
+  .savings-card:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(0,0,0,.1)}
+  .savings-top{padding:20px 20px 16px}
+  .savings-top .save-label{font-size:13px;font-weight:600;margin-bottom:6px}
+  .savings-top .save-amount{font-size:36px;font-weight:800;line-height:1}
+  .savings-top .save-amount sup{font-size:18px;vertical-align:super}
+  .savings-top p{font-size:13px;margin-top:10px;line-height:1.5}
+  .savings-img{aspect-ratio:4/3;overflow:hidden}
+  .savings-img img{width:100%;height:100%;object-fit:cover}
+  .savings-card:nth-child(1) .savings-top{background:#f5e6c8;color:var(--accent2)}
+  .savings-card:nth-child(2) .savings-top{background:#fce4e4;color:#c0392b}
+  .savings-card:nth-child(3) .savings-top{background:#f0e8d8;color:var(--accent2)}
+  .savings-card:nth-child(4) .savings-top{background:#d4ede0;color:var(--green)}
+
+  /* CASHBACK BANNER */
+  .cashback-banner{background:#f0e4d4;border-radius:var(--radius);padding:48px 56px;display:flex;align-items:center;justify-content:space-between;gap:40px;overflow:hidden;position:relative}
+  .cashback-banner h2{font-size:clamp(28px,3vw,44px);font-weight:800;color:var(--text)}
+  .cashback-banner p{font-size:14px;color:var(--text-light);margin-top:8px}
+  .cashback-cards{max-width:280px;flex-shrink:0}
+  .cashback-cards img{border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,.15)}
+
+  /* GREEN BANNER */
+  .green-banner{background:var(--green-dark);border-radius:var(--radius);padding:56px;display:flex;align-items:center;gap:48px;overflow:hidden;position:relative;margin:0 24px}
+  .green-banner-text h2{font-size:clamp(28px,3vw,44px);font-weight:800;color:#fff;margin-bottom:12px}
+  .green-banner-text p{font-size:14px;color:rgba(255,255,255,.75);line-height:1.7;max-width:380px}
+  .green-banner-text .btn-outline{display:inline-flex;align-items:center;gap:8px;border:2px solid #fff;color:#fff;padding:12px 28px;border-radius:40px;font-size:14px;font-weight:600;margin-top:24px;transition:.2s;background:none;cursor:pointer}
+  .green-banner-text .btn-outline:hover{background:#fff;color:var(--green-dark)}
+  .green-banner-img{flex:1;max-width:500px}
+  .green-banner-img img{border-radius:12px;width:100%;max-height:320px;object-fit:cover}
+
+  /* FILTER PILLS */
+  .filter-pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+  .pill{padding:8px 18px;border:1.5px solid var(--border);border-radius:24px;font-size:13px;font-weight:500;cursor:pointer;transition:.2s;background:#fff;white-space:nowrap}
+  .pill:hover{border-color:var(--text)}
+  .pill.active{background:var(--green-dark);color:#fff;border-color:var(--green-dark)}
+
+  /* TRENDING 2-COL */
+  .trending-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .trending-card{border-radius:var(--radius);overflow:hidden;position:relative;cursor:pointer;transition:.2s}
+  .trending-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.1)}
+  .trending-card img{width:100%;height:340px;object-fit:cover}
+  .trending-info{padding:18px}
+  .trending-info h3{font-size:17px;font-weight:700;margin-bottom:4px}
+  .trending-info p{font-size:13px;color:var(--text-muted)}
+  .trending-info .btn-dark{display:inline-flex;align-items:center;gap:6px;background:var(--text);color:#fff;padding:10px 20px;border-radius:24px;font-size:13px;font-weight:600;margin-top:14px;border:none;cursor:pointer;transition:.2s}
+  .trending-info .btn-dark:hover{background:var(--green-dark)}
+
+  /* BEST SELLING STORES */
+  .stores-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .store-card{border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:.2s}
+  .store-card:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(0,0,0,.1)}
+  .store-img{aspect-ratio:4/3;overflow:hidden;position:relative}
+  .store-img img{width:100%;height:100%;object-fit:cover}
+  .store-logo{position:absolute;bottom:-18px;left:16px;width:40px;height:40px;border-radius:50%;object-fit:contain;border:2px solid #fff;background:#fff}
+  .store-info{padding:28px 16px 16px}
+  .store-info h4{font-size:14px;font-weight:700}
+  .store-info p{font-size:12px;color:var(--text-muted)}
+  .store-delivery{font-size:12px;color:#e44;font-weight:500;margin-top:6px;display:flex;align-items:center;gap:4px}
+
+  /* SERVICES */
+  .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .service-card{border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:.2s}
+  .service-card:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(0,0,0,.1)}
+  .service-top{padding:24px;background:var(--bg-card)}
+  .service-top h3{font-size:15px;font-weight:700;margin-bottom:8px}
+  .service-top p{font-size:13px;color:var(--text-muted);line-height:1.6}
+  .service-img{aspect-ratio:4/3;overflow:hidden}
+  .service-img img{width:100%;height:100%;object-fit:cover}
+
+  /* FOOTER */
+  footer{background:#fff;border-top:1px solid var(--border);padding:56px 24px 0}
+  .footer-inner{max-width:1320px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr 1fr;gap:40px;padding-bottom:48px}
+  .footer-brand .logo{margin-bottom:16px}
+  .footer-brand p{font-size:13px;color:var(--text-muted);line-height:1.7;max-width:260px}
+  .footer-payments{margin-top:24px}
+  .footer-payments h5{font-size:12px;font-weight:600;color:var(--text-muted);margin-bottom:12px;text-transform:uppercase;letter-spacing:.05em}
+  .payment-icons{display:flex;flex-wrap:wrap;gap:8px}
+  .pay-badge{border:1.5px solid var(--border);border-radius:6px;padding:5px 10px;font-size:11px;font-weight:700;background:#fff}
+  .footer-col h4{font-size:14px;font-weight:700;margin-bottom:18px}
+  .footer-col ul{list-style:none}
+  .footer-col li{margin-bottom:10px}
+  .footer-col a{font-size:13px;color:var(--text-muted);transition:.2s}
+  .footer-col a:hover{color:var(--green)}
+  .footer-bottom{border-top:1px solid var(--border);padding:20px 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+  .footer-bottom-links{display:flex;gap:20px;flex-wrap:wrap}
+  .footer-bottom-links a{font-size:12px;color:var(--text-muted)}
+  .footer-bottom-links a:hover{color:var(--text)}
+  .footer-copy{font-size:12px;color:var(--text-muted)}
+
+  /* CART DRAWER */
+  .cart-drawer{position:fixed;top:0;right:-420px;width:420px;max-width:100vw;height:100vh;background:#fff;z-index:300;box-shadow:-4px 0 30px rgba(0,0,0,.15);transition:.35s;display:flex;flex-direction:column}
+  .cart-drawer.open{right:0}
+  .cart-header{padding:20px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+  .cart-header h3{font-size:17px;font-weight:700}
+  .cart-close{background:none;border:none;font-size:20px;cursor:pointer;color:var(--text-muted)}
+  .cart-items{flex:1;overflow-y:auto;padding:20px 24px}
+  .cart-empty{text-align:center;padding:60px 0;color:var(--text-muted)}
+  .cart-empty i{font-size:48px;margin-bottom:16px;color:var(--border)}
+  .cart-item{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--border)}
+  .cart-item-img{width:70px;height:70px;border-radius:8px;object-fit:cover;background:var(--bg-card);flex-shrink:0}
+  .cart-item-info{flex:1}
+  .cart-item-info h4{font-size:13.5px;font-weight:600;margin-bottom:4px}
+  .cart-item-info p{font-size:12px;color:var(--text-muted)}
+  .cart-item-price{font-size:14px;font-weight:700;margin-top:6px}
+  .cart-item-remove{background:none;border:none;color:var(--text-muted);font-size:13px;cursor:pointer;padding:4px}
+  .cart-item-remove:hover{color:var(--red)}
+  .qty-ctrl{display:flex;align-items:center;gap:8px;margin-top:8px}
+  .qty-btn{width:26px;height:26px;border:1.5px solid var(--border);border-radius:6px;background:#fff;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s}
+  .qty-btn:hover{border-color:var(--text)}
+  .qty-num{font-size:13px;font-weight:600;min-width:20px;text-align:center}
+  .cart-footer{padding:20px 24px;border-top:1px solid var(--border)}
+  .cart-total{display:flex;justify-content:space-between;font-size:16px;font-weight:700;margin-bottom:16px}
+  .btn-checkout{width:100%;padding:14px;background:var(--green-dark);color:#fff;border:none;border-radius:30px;font-size:15px;font-weight:700;cursor:pointer;transition:.2s}
+  .btn-checkout:hover{background:var(--green-mid)}
+
+  /* PRODUCT MODAL */
+  .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:400;align-items:center;justify-content:center;padding:20px}
+  .modal-overlay.open{display:flex}
+  .modal{background:#fff;border-radius:20px;width:100%;max-width:920px;max-height:90vh;overflow-y:auto;position:relative;display:grid;grid-template-columns:1fr 1fr;gap:0}
+  .modal-close{position:absolute;top:16px;right:16px;background:var(--bg-card);border:none;width:36px;height:36px;border-radius:50%;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:5;transition:.2s}
+  .modal-close:hover{background:var(--border)}
+  .modal-imgs{background:var(--bg-card);border-radius:20px 0 0 20px;overflow:hidden;padding:20px}
+  .modal-main-img{aspect-ratio:1;background:#f0f0f0;border-radius:12px;overflow:hidden;margin-bottom:12px}
+  .modal-main-img img{width:100%;height:100%;object-fit:cover}
+  .modal-thumbs{display:flex;gap:8px}
+  .modal-thumb{width:60px;height:60px;border-radius:8px;overflow:hidden;border:2px solid transparent;cursor:pointer;flex-shrink:0}
+  .modal-thumb.active{border-color:var(--green-dark)}
+  .modal-thumb img{width:100%;height:100%;object-fit:cover}
+  .modal-details{padding:32px 28px}
+  .modal-details h2{font-size:22px;font-weight:700;margin-bottom:8px;line-height:1.3}
+  .modal-details .modal-desc{font-size:13.5px;color:var(--text-muted);line-height:1.7;margin-bottom:16px}
+  .modal-stars{display:flex;align-items:center;gap:6px;margin-bottom:16px}
+  .modal-price{font-size:28px;font-weight:800;margin-bottom:6px}
+  .modal-price .monthly{font-size:14px;font-weight:500;color:var(--text-muted)}
+  .modal-price .old{font-size:16px;text-decoration:line-through;color:var(--text-muted);font-weight:400;margin-left:6px}
+  .modal-colors{margin-bottom:20px}
+  .modal-colors label{font-size:12px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px;display:block}
+  .color-dots{display:flex;gap:8px}
+  .color-dot{width:28px;height:28px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:.2s}
+  .color-dot.active{border-color:var(--text);outline:2px solid transparent;box-shadow:0 0 0 3px #fff,0 0 0 5px var(--text)}
+  .modal-qty{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+  .modal-qty label{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--text-muted)}
+  .qty-ctrl-lg{display:flex;align-items:center;gap:10px;border:1.5px solid var(--border);border-radius:10px;padding:4px 8px}
+  .qty-ctrl-lg .qty-btn{border:none;width:28px;height:28px}
+  .stock-note{font-size:12.5px;color:var(--red);font-weight:500}
+  .modal-btns{display:flex;gap:10px;margin-top:20px}
+  .modal-btns .btn-buy{flex:1;padding:13px;background:var(--green-dark);color:#fff;border:none;border-radius:30px;font-size:14px;font-weight:700;cursor:pointer;transition:.2s}
+  .modal-btns .btn-buy:hover{background:var(--green-mid)}
+  .modal-btns .btn-add{flex:1;padding:13px;background:#fff;color:var(--text);border:1.5px solid var(--border);border-radius:30px;font-size:14px;font-weight:700;cursor:pointer;transition:.2s}
+  .modal-btns .btn-add:hover{border-color:var(--text)}
+  .modal-delivery{background:var(--bg-light);border-radius:12px;padding:16px;margin-top:20px}
+  .modal-delivery-item{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid var(--border)}
+  .modal-delivery-item:last-child{border:none;padding-bottom:0}
+  .modal-delivery-item i{color:var(--accent);margin-top:2px}
+  .modal-delivery-item h5{font-size:13px;font-weight:700;margin-bottom:2px}
+  .modal-delivery-item p{font-size:12px;color:var(--text-muted);line-height:1.5}
+  .related-products{padding:32px 24px;border-top:1px solid var(--border);grid-column:1/-1}
+  .related-products h3{font-size:16px;font-weight:700;margin-bottom:20px}
+  .related-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .related-card{cursor:pointer;transition:.2s}
+  .related-card:hover{transform:translateY(-2px)}
+  .related-card .ri{background:var(--bg-card);border-radius:10px;aspect-ratio:1;overflow:hidden;margin-bottom:8px}
+  .related-card .ri img{width:100%;height:100%;object-fit:cover}
+  .related-card h5{font-size:12.5px;font-weight:600}
+  .related-card p{font-size:12px;color:var(--text-muted)}
+  .related-card .rp{font-size:13.5px;font-weight:700;margin-top:4px}
+
+  /* TOAST */
+  .toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--green-dark);color:#fff;padding:13px 24px;border-radius:30px;font-size:13.5px;font-weight:600;z-index:999;transition:.35s;white-space:nowrap;box-shadow:0 6px 24px rgba(0,0,0,.2);opacity:0}
+  .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+
+  /* RESPONSIVE */
+  @media(max-width:1100px){
+    .categories-grid{grid-template-columns:repeat(3,1fr)}
+    .products-grid{grid-template-columns:repeat(3,1fr)}
+    .footer-inner{grid-template-columns:1fr 1fr 1fr}
+  }
+  @media(max-width:820px){
+    nav{display:none}
+    .search-bar{display:none}
+    .hamburger{display:flex}
+    .mobile-nav{display:block}
+    .hero-inner{flex-direction:column;padding:36px 20px 40px;gap:24px;text-align:center}
+    .hero-img{max-width:100%;justify-content:center}
+    .hero-img img{max-height:220px}
+    .hero-text h1{font-size:24px}
+    .hero-text .hero-subtitle{font-size:13px;margin:0 auto 8px}
+    .hero-text .hero-body{font-size:12px;margin:0 auto 20px}
+    .hero-currency{display:none}
+    .categories-grid{grid-template-columns:repeat(2,1fr)}
+    .products-grid{grid-template-columns:repeat(2,1fr)}
+    .brands-grid{grid-template-columns:1fr 1fr}
+    .savings-grid{grid-template-columns:1fr 1fr}
+    .trending-grid{grid-template-columns:1fr}
+    .stores-grid{grid-template-columns:1fr 1fr}
+    .services-grid{grid-template-columns:1fr}
+    .footer-inner{grid-template-columns:1fr 1fr}
+    .green-banner{flex-direction:column;padding:36px 24px;margin:0 12px}
+    .green-banner-img{display:none}
+    .cashback-banner{flex-direction:column;padding:36px 24px}
+    .modal{grid-template-columns:1fr;max-height:95vh}
+    .modal-imgs{border-radius:20px 20px 0 0}
+    .related-grid{grid-template-columns:repeat(2,1fr)}
+    .topbar-left,.topbar-right{display:none}
+    .pag-grid{grid-template-columns:repeat(2,1fr)}
+    .cat-section-header{flex-direction:column;align-items:flex-start;gap:10px}
+    body{font-size:12px}
+    .section-title{font-size:17px;margin-bottom:18px}
+    .product-name{font-size:12px}
+    .product-desc{font-size:11px}
+    .product-price{font-size:13px}
+    .btn-cart{font-size:11px;padding:6px 10px}
+    .cat-section-header h2{font-size:17px}
+    .cat-label{font-size:12px}
+    h2,.section-title{font-size:17px}
+    .header-btn{font-size:12px}
+    .trending-info h3{font-size:14px}
+    .trending-info p{font-size:11px}
+    .store-info h4{font-size:12px}
+    .store-info p{font-size:11px}
+    .brand-info .brand-name{font-size:12px}
+    .brand-info .brand-sub{font-size:11px}
+    .savings-top .save-amount{font-size:28px}
+    .savings-top p{font-size:11px}
+    .footer-col a{font-size:11px}
+    .footer-col h4{font-size:12px}
+    .pay-badge{font-size:10px;padding:4px 8px}
+    .nav-link{font-size:12px}
+    .topbar{font-size:11px}
+  }
+  @media(max-width:520px){
+    .categories-grid{grid-template-columns:repeat(2,1fr)}
+    .products-grid{grid-template-columns:1fr 1fr}
+    .savings-grid{grid-template-columns:1fr}
+    .brands-grid{grid-template-columns:1fr}
+    .stores-grid{grid-template-columns:1fr}
+    .section{padding:28px 14px}
+    header{padding:0 14px}
+    .header-inner{height:54px}
+    .logo img.logo-img{height:42px}
+    .cart-drawer{width:100vw}
+    .pag-grid{grid-template-columns:1fr 1fr}
+    body{font-size:11.5px}
+    .product-name{font-size:11.5px}
+    .section-title{font-size:15px}
+    .hero-text h1{font-size:20px}
+    .hero-text .hero-subtitle{font-size:12px}
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-left">📞 +263 71 875 6599</div>
+  <div class="topbar-center">Get Up to 20% Off On Selected Items &nbsp;|&nbsp; <a href="#">Shop Now</a></div>
+  <div class="topbar-right">
+    <select><option>Eng</option></select>
+    <select><option>Zimbabwe</option></select>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <div class="hamburger" id="hamburgerBtn" onclick="toggleMobileNav()">
+      <span></span><span></span><span></span>
+    </div>
+    <a href="#" class="logo">
+      <img class="logo-img" src="logo.png" alt="WillSir Technologies"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="logo-fallback" style="display:none">W</div>
+    </a>
+    <nav>
+      <a href="#section-laptops" class="nav-link"><i class="fa fa-laptop" style="font-size:12px"></i> Laptops</a>
+      <a href="#section-phones" class="nav-link"><i class="fa fa-mobile-alt" style="font-size:12px"></i> Phones</a>
+      <a href="#section-tablets" class="nav-link"><i class="fa fa-tablet-alt" style="font-size:12px"></i> Tablets</a>
+      <a href="#section-accessories" class="nav-link"><i class="fa fa-headphones" style="font-size:12px"></i> Accessories</a>
+      <a href="#section-gaming" class="nav-link"><i class="fa fa-gamepad" style="font-size:12px"></i> Gaming</a>
+      <a href="#deals" class="nav-link"><i class="fa fa-tag" style="font-size:12px"></i> Deals</a>
+    </nav>
+    <div class="search-bar">
+      <input type="text" placeholder="Search Product" id="searchInput" onkeyup="handleSearch(event)">
+      <button><i class="fa fa-search"></i></button>
+    </div>
+    <div class="header-actions">
+      <button class="header-btn" onclick="toggleCart()">
+        <i class="fa fa-user"></i> Account
+      </button>
+      <button class="header-btn" onclick="toggleCart()">
+        <i class="fa fa-shopping-cart"></i> Cart
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- MOBILE NAV -->
+<div class="overlay" id="overlay" onclick="closeMobileNav()"></div>
+<div class="mobile-nav" id="mobileNav">
+  <button class="mobile-nav-close" onclick="closeMobileNav()"><i class="fa fa-times"></i></button>
+  <a href="#" class="logo" style="margin-bottom:24px">
+    <img class="logo-img" src="logo.png" alt="WillSir" onerror="this.style.display='none'">
+  </a>
+  <a href="#section-laptops" onclick="closeMobileNav()"><i class="fa fa-laptop" style="margin-right:8px;color:var(--green-dark)"></i> Laptops</a>
+  <a href="#section-phones" onclick="closeMobileNav()"><i class="fa fa-mobile-alt" style="margin-right:8px;color:var(--green-dark)"></i> Phones</a>
+  <a href="#section-tablets" onclick="closeMobileNav()"><i class="fa fa-tablet-alt" style="margin-right:8px;color:var(--green-dark)"></i> Tablets</a>
+  <a href="#section-accessories" onclick="closeMobileNav()"><i class="fa fa-headphones" style="margin-right:8px;color:var(--green-dark)"></i> Accessories</a>
+  <a href="#section-gaming" onclick="closeMobileNav()"><i class="fa fa-gamepad" style="margin-right:8px;color:var(--green-dark)"></i> Gaming</a>
+  <a href="#deals" onclick="closeMobileNav()"><i class="fa fa-tag" style="margin-right:8px;color:var(--green-dark)"></i> Deals</a>
+  <a href="#brands" onclick="closeMobileNav()">Brands</a>
+  <a href="#" onclick="closeMobileNav()">Account</a>
+  <a href="#" onclick="toggleCart();closeMobileNav()">Cart</a>
+  <a href="#footer" onclick="closeMobileNav()">Help</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-currency">
+    <button class="active">USD</button>
+    <button>ZWL</button>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-text">
+      <h1>WillSir Technologies</h1>
+      <p class="hero-subtitle">Where Technology Meets Trust</p>
+      <p class="hero-body">See all the content you love on the best tech devices, delivered to your door across Zimbabwe.</p>
+      <button class="btn-primary" onclick="scrollToSection('deals')">
+        View Details
+      </button>
+    </div>
+    <div class="hero-img">
+      <img src="https://images.unsplash.com/photo-1593642632632-d927bada2aac?w=700&q=80"
+           alt="WillSir Tech Products"
+           onerror="this.src='https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=700&q=80'">
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORIES QUICK NAV -->
+<section class="section" id="categories">
+  <div class="section-inner">
+    <h2 class="section-title">Shop Our Top Categories</h2>
+    <div class="categories-grid">
+      <div class="cat-card" onclick="scrollToSection('section-laptops')" style="background:#2d6a45">
+        <img src="https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=400&q=80" alt="Laptops">
+        <div class="cat-label">Laptops</div>
+      </div>
+      <div class="cat-card" onclick="scrollToSection('section-phones')" style="background:#b85c38">
+        <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&q=80" alt="Phones">
+        <div class="cat-label">Phones</div>
+      </div>
+      <div class="cat-card" onclick="scrollToSection('section-tablets')" style="background:#8b3a62">
+        <img src="https://images.unsplash.com/photo-1585790050230-5dd28404ccb9?w=400&q=80" alt="Tablets">
+        <div class="cat-label">Tablets</div>
+      </div>
+      <div class="cat-card" onclick="scrollToSection('section-accessories')" style="background:#1a6b8a">
+        <img src="https://images.unsplash.com/photo-1484704849700-f032a568e944?w=400&q=80" alt="Accessories">
+        <div class="cat-label">Accessories</div>
+      </div>
+      <div class="cat-card" onclick="scrollToSection('section-gaming')" style="background:#5a3e8a">
+        <img src="https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=400&q=80" alt="Gaming">
+        <div class="cat-label">Gaming</div>
+      </div>
+      <div class="cat-card" onclick="scrollToSection('deals')" style="background:#8a6a1a">
+        <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=400&q=80" alt="Deals">
+        <div class="cat-label">Deals</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LAPTOPS SECTION -->
+<section class="section" id="section-laptops" style="background:var(--bg-light)">
+  <div class="section-inner">
+    <div class="cat-section-header">
+      <h2><i class="fa fa-laptop"></i> Laptops</h2>
+      <a href="#" class="view-all" onclick="showAllCategory('Laptops');return false;">View All Laptops</a>
+    </div>
+    <div class="products-grid" id="laptopsGrid"></div>
+  </div>
+</section>
+
+<!-- PHONES SECTION -->
+<section class="section" id="section-phones">
+  <div class="section-inner">
+    <div class="cat-section-header">
+      <h2><i class="fa fa-mobile-alt"></i> Phones</h2>
+      <a href="#" class="view-all" onclick="showAllCategory('Phones');return false;">View All Phones</a>
+    </div>
+    <div class="products-grid" id="phonesGrid"></div>
+  </div>
+</section>
+
+<!-- TABLETS SECTION -->
+<section class="section" id="section-tablets" style="background:var(--bg-light)">
+  <div class="section-inner">
+    <div class="cat-section-header">
+      <h2><i class="fa fa-tablet-alt"></i> Tablets</h2>
+      <a href="#" class="view-all" onclick="showAllCategory('Tablets');return false;">View All Tablets</a>
+    </div>
+    <div class="products-grid" id="tabletsGrid"></div>
+  </div>
+</section>
+
+<!-- ACCESSORIES SECTION -->
+<section class="section" id="section-accessories">
+  <div class="section-inner">
+    <div class="cat-section-header">
+      <h2><i class="fa fa-headphones"></i> Accessories</h2>
+      <a href="#" class="view-all" onclick="showAllCategory('Accessories');return false;">View All Accessories</a>
+    </div>
+    <div id="accessoriesGrid">
+      <div style="text-align:center;padding:60px 0;color:var(--text-muted)">
+        <i class="fa fa-headphones" style="font-size:48px;margin-bottom:16px;display:block;opacity:.3"></i>
+        <p style="font-size:15px;font-weight:600;margin-bottom:6px">Accessories Coming Soon</p>
+        <p style="font-size:13px">Check back shortly for headphones, cables, cases &amp; more.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GAMING SECTION -->
+<section class="section" id="section-gaming" style="background:var(--bg-light)">
+  <div class="section-inner">
+    <div class="cat-section-header">
+      <h2><i class="fa fa-gamepad"></i> Gaming</h2>
+      <a href="#" class="view-all" onclick="showAllCategory('Gaming');return false;">View All Gaming</a>
+    </div>
+    <div id="gamingGrid">
+      <div style="text-align:center;padding:60px 0;color:var(--text-muted)">
+        <i class="fa fa-gamepad" style="font-size:48px;margin-bottom:16px;display:block;opacity:.3"></i>
+        <p style="font-size:15px;font-weight:600;margin-bottom:6px">Gaming Products Coming Soon</p>
+        <p style="font-size:13px">Gaming laptops, controllers, headsets &amp; more arriving soon.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TODAY'S BEST DEALS -->
+<section class="section" id="deals" style="padding-top:48px;padding-bottom:48px">
+  <div class="section-inner">
+    <h2 class="section-title">Todays Best Deals For You!</h2>
+    <div class="filter-pills" id="filterPills">
+      <div class="pill active" onclick="setFilter('All',this)">All</div>
+      <div class="pill" onclick="setFilter('Laptops',this)">Laptops</div>
+      <div class="pill" onclick="setFilter('Phones',this)">Phones</div>
+      <div class="pill" onclick="setFilter('Tablets',this)">Tablets</div>
+      <div class="pill" onclick="setFilter('Accessories',this)">Accessories</div>
+      <div class="pill" onclick="setFilter('Gaming',this)">Gaming</div>
+    </div>
+    <div class="pag-wrap">
+      <div class="pag-grid" id="dealsGrid"></div>
+      <div class="pag-nav" id="dealsNav"></div>
+    </div>
+  </div>
+</section>
+
+<!-- BRANDS -->
+<section class="section" id="brands" style="background:var(--bg-light);padding-top:32px">
+  <div class="section-inner">
+    <h2 class="section-title">Choose By Brand</h2>
+    <div class="brands-grid" id="brandsGrid"></div>
+  </div>
+</section>
+
+<!-- SAVINGS -->
+<section class="section" style="padding-top:24px">
+  <div class="section-inner">
+    <h2 class="section-title">Get Up To 20% Off</h2>
+    <div class="savings-grid">
+      <div class="savings-card" onclick="scrollToSection('section-laptops')">
+        <div class="savings-top"><div class="save-label">Save</div><div class="save-amount"><sup>$</sup>30</div><p>Explore Our Laptops &amp; Computers Range</p></div>
+        <div class="savings-img"><img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=500&q=80" alt="Laptop deal"></div>
+      </div>
+      <div class="savings-card" onclick="scrollToSection('section-phones')">
+        <div class="savings-top"><div class="save-label">Save</div><div class="save-amount"><sup>$</sup>15</div><p>Explore Our Phones &amp; Mobile Range</p></div>
+        <div class="savings-img"><img src="https://images.unsplash.com/photo-1580910051074-3eb694886505?w=500&q=80" alt="Phone deal"></div>
+      </div>
+      <div class="savings-card" onclick="scrollToSection('section-tablets')">
+        <div class="savings-top"><div class="save-label">Save</div><div class="save-amount"><sup>$</sup>20</div><p>Explore Our Tablets &amp; iPad Range</p></div>
+        <div class="savings-img"><img src="https://images.unsplash.com/photo-1585790050230-5dd28404ccb9?w=500&q=80" alt="Tablet deal"></div>
+      </div>
+      <div class="savings-card" onclick="scrollToSection('section-accessories')">
+        <div class="savings-top"><div class="save-label">Save</div><div class="save-amount"><sup>$</sup>10</div><p>Explore Our Accessories Range</p></div>
+        <div class="savings-img"><img src="https://images.unsplash.com/photo-1484704849700-f032a568e944?w=500&q=80" alt="Accessories deal"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WEEKLY POPULAR -->
+<section class="section" id="new-arrivals" style="background:var(--bg-light)">
+  <div class="section-inner">
+    <h2 class="section-title">Weekly Popular Products</h2>
+    <div class="pag-wrap">
+      <div class="pag-grid" id="weeklyGrid"></div>
+      <div class="pag-nav" id="weeklyNav"></div>
+    </div>
+  </div>
+</section>
+
+<!-- GREEN CASHBACK BANNER -->
+<div style="max-width:1320px;margin:0 auto;padding:0 24px">
+  <div class="green-banner" style="margin:0">
+    <div class="green-banner-text">
+      <h2>Get 5% Cash Back On $200</h2>
+      <p>Shopping is a bit of a relaxing hobby for us, which is sometimes troubling for the bank balance.</p>
+      <button class="btn-outline" onclick="scrollToSection('deals')">Learn More</button>
+    </div>
+    <div class="green-banner-img">
+      <img src="https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=600&q=80" alt="Tech products">
+    </div>
+  </div>
+</div>
+
+<!-- MOST SELLING -->
+<section class="section">
+  <div class="section-inner">
+    <h2 class="section-title">Most Selling Products</h2>
+    <div class="pag-wrap most-selling-pag">
+      <div class="pag-grid" id="mostSellingGrid"></div>
+      <div class="pag-nav" id="mostSellingNav"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CASHBACK BANNER -->
+<section class="section" style="background:var(--bg-light)">
+  <div class="section-inner">
+    <div class="cashback-banner">
+      <div>
+        <h2>Get 5% Cash Back</h2>
+        <p>on WillSir Technologies purchases. Sign up for our loyalty card today.</p>
+        <button class="btn-primary" style="margin-top:24px;border-color:var(--green-dark);background:var(--green-dark);color:#fff;border-radius:40px" onclick="showToast('Loyalty card sign-up coming soon!')">Learn More</button>
+      </div>
+      <div class="cashback-cards">
+        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&q=80" alt="Payment cards" style="border-radius:16px;width:100%">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRENDING -->
+<section class="section" id="delivery">
+  <div class="section-inner">
+    <h2 class="section-title">Trending Products For You!</h2>
+    <div class="trending-grid">
+      <div class="trending-card" style="background:#f5f0e8" onclick="scrollToSection('section-laptops')">
+        <img src="https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=700&q=80" alt="Laptops">
+        <div class="trending-info">
+          <h3>Laptop World</h3>
+          <p>Delivery within 24 hours</p>
+          <button class="btn-dark">Shop Now</button>
+        </div>
+      </div>
+      <div class="trending-card" style="background:#f0f5f0" onclick="scrollToSection('section-phones')">
+        <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=700&q=80" alt="Phones">
+        <div class="trending-info">
+          <h3>Mobile World</h3>
+          <p>Delivery within 24 hours</p>
+          <button class="btn-dark">Shop Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BEST SELLING STORES -->
+<section class="section" style="background:var(--bg-light)">
+  <div class="section-inner">
+    <h2 class="section-title">Best Selling Store</h2>
+    <div class="stores-grid">
+      <div class="store-card">
+        <div class="store-img">
+          <img src="https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=500&q=80" alt="WillSir Store">
+          <img src="logo.png" class="store-logo" alt="WillSir" onerror="this.style.display='none'">
+        </div>
+        <div class="store-info">
+          <h4>WillSir Main Store</h4>
+          <p>Laptops • Phones</p>
+          <div class="store-delivery"><i class="fa fa-map-marker-alt"></i> Delivery within 24 hours</div>
+        </div>
+      </div>
+      <div class="store-card">
+        <div class="store-img"><img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=500&q=80" alt="Tech Hub"></div>
+        <div class="store-info">
+          <h4>Tech Hub ZW</h4>
+          <p>Accessories • Gaming</p>
+          <div class="store-delivery"><i class="fa fa-map-marker-alt"></i> Delivery within 24 hours</div>
+        </div>
+      </div>
+      <div class="store-card">
+        <div class="store-img"><img src="https://images.unsplash.com/photo-1468495244123-6c6c332eeece?w=500&q=80" alt="Gadgets"></div>
+        <div class="store-info">
+          <h4>Gadget Paradise</h4>
+          <p>Tablets • Gadgets</p>
+          <div class="store-delivery"><i class="fa fa-map-marker-alt"></i> Delivery within 24 hours</div>
+        </div>
+      </div>
+      <div class="store-card">
+        <div class="store-img"><img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=500&q=80" alt="Deals"></div>
+        <div class="store-info">
+          <h4>Deal Zone ZW</h4>
+          <p>Ex-UK • Refurbished</p>
+          <div class="store-delivery"><i class="fa fa-map-marker-alt"></i> Delivery within 24 hours</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section">
+  <div class="section-inner">
+    <h2 class="section-title">Services To Help You Shop</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-top"><h3>Frequently Asked Questions</h3><p>Updates on safe shopping and our warranty policies.</p></div>
+        <div class="service-img"><img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=500&q=80" alt="FAQ"></div>
+      </div>
+      <div class="service-card">
+        <div class="service-top"><h3>Online Payment Process</h3><p>Secure EcoCash, bank transfer and card payments.</p></div>
+        <div class="service-img"><img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=500&q=80" alt="Payment"></div>
+      </div>
+      <div class="service-card">
+        <div class="service-top"><h3>Home Delivery Options</h3><p>Fast and reliable delivery across Zimbabwe.</p></div>
+        <div class="service-img"><img src="https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=500&q=80" alt="Delivery"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="#" class="logo">
+        <img class="logo-img" src="logo.png" alt="WillSir Technologies" style="height:44px" onerror="this.style.display='none'">
+      </a>
+      <p style="margin-top:12px">Where Technology meets trust. Quality laptops, phones, and tablets delivered to your door in Zimbabwe.</p>
+      <div class="footer-payments">
+        <h5>Accepted Payments</h5>
+        <div class="payment-icons">
+          <span class="pay-badge">EcoCash</span>
+          <span class="pay-badge">Visa</span>
+          <span class="pay-badge">MC</span>
+          <span class="pay-badge">ZimSwitch</span>
+          <span class="pay-badge">PayPal</span>
+          <span class="pay-badge">Cash</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Products</h4>
+      <ul>
+        <li><a href="#section-laptops">Laptops</a></li>
+        <li><a href="#section-phones">Phones</a></li>
+        <li><a href="#section-tablets">Tablets</a></li>
+        <li><a href="#section-accessories">Accessories</a></li>
+        <li><a href="#section-gaming">Gaming</a></li>
+        <li><a href="#deals">Deals &amp; Offers</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>About Us</h4>
+      <ul>
+        <li><a href="#">About WillSir</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">News &amp; Blog</a></li>
+        <li><a href="#">Help Center</a></li>
+        <li><a href="#">Press Center</a></li>
+        <li><a href="#">Shop By Location</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#">Warranty</a></li>
+        <li><a href="#">Repairs</a></li>
+        <li><a href="#">Shipping &amp; Delivery</a></li>
+        <li><a href="#">Order Pickup</a></li>
+        <li><a href="#">Account Signup</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Help</h4>
+      <ul>
+        <li><a href="#">WillSir Help</a></li>
+        <li><a href="#">Returns</a></li>
+        <li><a href="#">Track Orders</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Feedback</a></li>
+        <li><a href="#">Security &amp; Fraud</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="section-inner">
+    <div class="footer-bottom">
+      <div class="footer-bottom-links">
+        <a href="#">Become Seller</a>
+        <a href="#">Gift Cards</a>
+        <a href="#">Help Center</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Privacy &amp; Policy</a>
+      </div>
+      <div class="footer-copy">© 2025 WillSir Technologies ZW. All Rights Reserved.</div>
+    </div>
+  </div>
+</footer>
+
+<!-- CART DRAWER -->
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-header">
+    <h3><i class="fa fa-shopping-cart" style="margin-right:8px"></i> Your Cart</h3>
+    <button class="cart-close" onclick="toggleCart()"><i class="fa fa-times"></i></button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <div class="cart-empty" id="cartEmpty">
+      <i class="fa fa-shopping-cart"></i>
+      <p style="font-size:15px;font-weight:600;margin-bottom:6px">Your cart is empty</p>
+      <p style="font-size:13px">Add some products to get started</p>
+    </div>
+  </div>
+  <div class="cart-footer" id="cartFooter" style="display:none">
+    <div class="cart-total"><span>Total</span><span id="cartTotal">$0.00</span></div>
+    <button class="btn-checkout" onclick="checkout()">Proceed to Checkout</button>
+  </div>
+</div>
+<div class="overlay" id="cartOverlay" onclick="toggleCart()"></div>
+
+<!-- PRODUCT MODAL -->
+<div class="modal-overlay" id="productModal">
+  <div class="modal" id="modalContent">
+    <button class="modal-close" onclick="closeModal()"><i class="fa fa-times"></i></button>
+    <div class="modal-imgs" id="modalImgs">
+      <div class="modal-main-img"><img id="modalMainImg" src="" alt="Product"></div>
+      <div class="modal-thumbs" id="modalThumbs"></div>
+    </div>
+    <div class="modal-details" id="modalDetails"></div>
+    <div class="related-products" id="relatedProducts"></div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+const products = [
+  {id:1,name:"Lenovo 300e",category:"Laptops",price:135,oldPrice:null,img:"Dell Laptop 3190.jpg",imgs:["https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=600&q=80","https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600&q=80","https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&q=80"],desc:"4GB RAM X360 Touchscreen. 2-in-1 convertible laptop perfect for students and everyday use.",colors:["#1a1a1a","#c0c0c0","#4a90d9"],stock:8,badge:null},
+  {id:2,name:"Lenovo ThinkPad 100e",category:"Laptops",price:110,oldPrice:null,img:"https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&q=80",imgs:["https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&q=80","https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=600&q=80"],desc:"Intel Celeron Quad Core 4GB RAM. Reliable laptop for business and education.",colors:["#1a1a1a","#c0c0c0"],stock:5,badge:"Popular"},
+  {id:3,name:"Lenovo ThinkPad Yoga",category:"Laptops",price:120,oldPrice:null,img:"https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=600&q=80",imgs:["https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=600&q=80","https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600&q=80"],desc:"Intel Celeron 4 Core 4GB RAM 360° convertible. Great for professionals.",colors:["#1a1a1a","#2d2d2d"],stock:3,badge:null},
+  {id:4,name:"Lenovo T440s",category:"Laptops",price:220,oldPrice:null,img:"https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=600&q=80",imgs:["https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=600&q=80"],desc:"Boxed 95% new Ex UK. Core i5, solid performance for work and study.",colors:["#1a1a1a"],stock:2,badge:"Ex-UK"},
+  {id:5,name:"Dell Latitude 3120 x360",category:"Laptops",price:200,oldPrice:230,img:"https://images.unsplash.com/photo-1484788984921-03950022c9ef?w=600&q=80",imgs:["https://images.unsplash.com/photo-1484788984921-03950022c9ef?w=600&q=80","https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600&q=80"],desc:"Dell Latitude 3120 X360 Touchscreen 2-in-1. Durable and reliable.",colors:["#1a1a1a","#808080"],stock:4,badge:"Sale"},
+  {id:6,name:"Dell Laptop 3190",category:"Laptops",price:150,oldPrice:null,img:"https://images.unsplash.com/photo-1553514029-1318c9127859?w=600&q=80",imgs:["https://images.unsplash.com/photo-1553514029-1318c9127859?w=600&q=80"],desc:"Boxed 95% new Ex UK Intel. Compact and lightweight for everyday use.",colors:["#1a1a1a","#c0c0c0"],stock:6,badge:"Ex-UK"},
+  {id:7,name:"HP EliteBook 840 G5",category:"Laptops",price:300,oldPrice:null,img:"https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&q=80",imgs:["https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&q=80","https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=600&q=80"],desc:"Ex UK 95% New Boxed Intel Core i5. Premium business ultrabook.",colors:["#808080","#1a1a1a"],stock:3,badge:null},
+  {id:8,name:"HP ProBook 640/820 G2",category:"Laptops",price:220,oldPrice:250,img:"https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=600&q=80",imgs:["https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=600&q=80"],desc:"Boxed Ex UK Core i5 5th Gen. Great value business laptop.",colors:["#808080"],stock:7,badge:"Sale"},
+  {id:9,name:"Lenovo ThinkPad Yoga 11e",category:"Laptops",price:150,oldPrice:null,img:"https://images.unsplash.com/photo-1593642632632-d927bada2aac?w=600&q=80",imgs:["https://images.unsplash.com/photo-1593642632632-d927bada2aac?w=600&q=80"],desc:"Boxed Laptop Quad CORES. Rugged design, great for students.",colors:["#1a1a1a"],stock:4,badge:null},
+  {id:10,name:"HP EliteBook 840 G5 Core i5",category:"Laptops",price:300,oldPrice:null,img:"https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=600&q=80",imgs:["https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=600&q=80"],desc:"Ex UK Core i5 8th Generation. High performance business laptop.",colors:["#808080","#1a1a1a"],stock:2,badge:null},
+  {id:11,name:"Samsung A06",category:"Phones",price:120,oldPrice:130,img:"https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=600&q=80",imgs:["https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=600&q=80","https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600&q=80"],desc:"Boxed Brand New 4GB RAM 64GB storage. Perfect entry-level smartphone.",colors:["#1a1a1a","#3a86ff","#2ecc71"],stock:10,badge:"New"},
+  {id:12,name:"Samsung A05",category:"Phones",price:90,oldPrice:100,img:"https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=600&q=80",imgs:["https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=600&q=80"],desc:"4GB RAM 64GB storage Boxed. Affordable smartphone with great camera.",colors:["#1a1a1a","#3a86ff","#c0c0c0"],stock:8,badge:"Sale"},
+  {id:13,name:"Samsung M13",category:"Phones",price:150,oldPrice:null,img:"https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?w=600&q=80",imgs:["https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?w=600&q=80"],desc:"Boxed and sealed. 6.6\" display, 5000mAh battery, triple camera.",colors:["#1a4a8a","#1a1a1a","#2ecc71"],stock:5,badge:"Boxed"},
+  {id:14,name:"Amazon Tablet 8th Gen",category:"Tablets",price:75,oldPrice:100,img:"https://images.unsplash.com/photo-1585790050230-5dd28404ccb9?w=600&q=80",imgs:["https://images.unsplash.com/photo-1585790050230-5dd28404ccb9?w=600&q=80","https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=600&q=80"],desc:"New 4GB RAM 32GB storage. Great for reading, streaming, and kids.",colors:["#1a1a1a","#2d6a45","#8b3a62"],stock:6,badge:"Sale"},
+  {id:15,name:"C-Idea Tablet 6.1 Version",category:"Tablets",price:60,oldPrice:null,img:"https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=600&q=80",imgs:["https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=600&q=80"],desc:"Boxed brand new. 6.1\" display, Android, lightweight and portable.",colors:["#1a1a1a","#c0c0c0"],stock:9,badge:null},
+  {id:16,name:"C-Idea Tablet 8gb Plus",category:"Tablets",price:75,oldPrice:null,img:"https://images.unsplash.com/photo-1561154464-82e9adf32764?w=600&q=80",imgs:["https://images.unsplash.com/photo-1561154464-82e9adf32764?w=600&q=80"],desc:"Boxed Brand New 8 inches. 8GB RAM, fast processor, perfect for work.",colors:["#1a1a1a","#f5a623"],stock:4,badge:"New"},
+  {id:17,name:"HP ProBook 11EE G5",category:"Laptops",price:150,oldPrice:180,img:"https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600&q=80",imgs:["https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600&q=80"],desc:"Boxed 95% new Ex UK Intel. Rugged 11.6\" laptop, ideal for field work.",colors:["#808080","#1a1a1a"],stock:3,badge:"Ex-UK"},
+  {id:18,name:"HP EliteBook 820",category:"Laptops",price:210,oldPrice:220,img:"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&q=80",imgs:["https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&q=80"],desc:"Boxed 95% new Ex UK Core i5. Slim ultrabook with long battery life.",colors:["#808080"],stock:2,badge:null},
+  {id:19,name:"HP 640/840",category:"Laptops",price:220,oldPrice:250,img:"https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=600&q=80",imgs:["https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=600&q=80"],desc:"Boxed 95% new Ex UK Core i5. Business laptop with full HD display.",colors:["#808080","#1a1a1a"],stock:4,badge:"Sale"},
+  {id:20,name:"Lenovo T450s",category:"Laptops",price:220,oldPrice:null,img:"https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?w=600&q=80",imgs:["https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?w=600&q=80"],desc:"Boxed 95% new Ex UK Core i5. Ultra slim and powerful business laptop.",colors:["#1a1a1a"],stock:3,badge:"Ex-UK"},
+  {id:21,name:"Lenovo ThinkPad X1 Carbon",category:"Laptops",price:210,oldPrice:null,img:"https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=600&q=80",imgs:["https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=600&q=80"],desc:"Boxed 95% New Ex UK Core i5. The iconic ThinkPad ultrabook.",colors:["#1a1a1a"],stock:1,badge:"Ex-UK"},
+  {id:22,name:"Lenovo x250",category:"Laptops",price:200,oldPrice:null,img:"https://images.unsplash.com/photo-1484788984921-03950022c9ef?w=600&q=80",imgs:["https://images.unsplash.com/photo-1484788984921-03950022c9ef?w=600&q=80"],desc:"Boxed 95% New Ex UK Core i5. Classic ThinkPad reliability.",colors:["#1a1a1a"],stock:5,badge:null},
+  {id:23,name:"HP 830 G3",category:"Laptops",price:320,oldPrice:350,img:"https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=600&q=80",imgs:["https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=600&q=80"],desc:"Boxed 95% new Ex UK Core i5. Premium EliteBook with security features.",colors:["#808080","#1a1a1a"],stock:2,badge:"Sale"},
+  {id:24,name:"Dell 7390",category:"Laptops",price:350,oldPrice:380,img:"https://images.unsplash.com/photo-1547082299-de196ea013d6?w=600&q=80",imgs:["https://images.unsplash.com/photo-1547082299-de196ea013d6?w=600&q=80"],desc:"Boxed Ex UK Core i7 8th Gen. High performance ultrabook for power users.",colors:["#808080","#1a1a1a"],stock:2,badge:"Sale"},
+  {id:25,name:"Dell Latitude 5440",category:"Laptops",price:200,oldPrice:230,img:"https://images.unsplash.com/photo-1553514029-1318c9127859?w=600&q=80",imgs:["https://images.unsplash.com/photo-1553514029-1318c9127859?w=600&q=80"],desc:"Boxed 95% New Ex UK Core i5. Modern design with fast SSD.",colors:["#1a1a1a","#808080"],stock:3,badge:"Sale"},
+  {id:26,name:"Laptops (Brand New Sealed)",category:"Laptops",price:300,oldPrice:null,img:"https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600&q=80",imgs:["https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=600&q=80"],desc:"Boxed Brand New Sealed N... Latest generation processors, full warranty.",colors:["#1a1a1a","#808080"],stock:10,badge:"New"},
+  {id:27,name:"Idino Notepad 8",category:"Tablets",price:80,oldPrice:null,img:"https://images.unsplash.com/photo-1585790050230-5dd28404ccb9?w=600&q=80",imgs:["https://images.unsplash.com/photo-1585790050230-5dd28404ccb9?w=600&q=80"],desc:"Boxed brand new with keyboard. 256GB storage, stylus support.",colors:["#1a1a1a","#2d6a45"],stock:5,badge:"New"},
+  {id:28,name:"HP EliteBook (New Boxed)",category:"Laptops",price:250,oldPrice:null,img:"https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&q=80",imgs:["https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&q=80"],desc:"New Boxed Core i5 8GB RAM. Brand new HP EliteBook with full warranty.",colors:["#808080"],stock:4,badge:"New"},
+  {id:29,name:"Dell 3150",category:"Laptops",price:150,oldPrice:null,img:"https://images.unsplash.com/photo-1484788984921-03950022c9ef?w=600&q=80",imgs:["https://images.unsplash.com/photo-1484788984921-03950022c9ef?w=600&q=80"],desc:"Dual Core 4GB RAM 500GB Storage. Reliable everyday laptop.",colors:["#1a1a1a"],stock:6,badge:null},
+];
+
+const brands = [
+  {name:"Lenovo",sub:"Delivery within 24 hours",color:"#e8001c",letter:"L"},
+  {name:"Dell",sub:"Delivery within 24 hours",color:"#007db8",letter:"D"},
+  {name:"HP",sub:"Delivery within 24 hours",color:"#0096d6",letter:"H"},
+  {name:"Samsung",sub:"Delivery within 24 hours",color:"#1428a0",letter:"S"},
+  {name:"Amazon",sub:"Delivery within 24 hours",color:"#ff9900",letter:"A"},
+  {name:"C-Idea",sub:"Delivery within 24 hours",color:"#333",letter:"C"},
+  {name:"Apple",sub:"Delivery within 24 hours",color:"#555",letter:""},
+  {name:"Acer",sub:"Delivery within 24 hours",color:"#83b81a",letter:"A"},
+];
+
+let cart = [];
+let activeFilter = 'All';
+let cartOpen = false;
+let wishlist = new Set();
+
+const pagState = {
+  deals:      { page: 0 },
+  weekly:     { page: 0 },
+  mostSelling:{ page: 0 }
+};
+const PAGE_SIZE = 3;
+
+function productCardHTML(p, slider) {
+  const hasOld = p.oldPrice && p.oldPrice > p.price;
+  const isWish = wishlist.has(p.id);
+  return `
+  <div class="product-card${slider ? ' slider-card' : ''}" onclick="openModal(${p.id})">
+    <div class="product-img">
+      ${p.badge ? `<div style="position:absolute;top:10px;left:10px;background:var(--green-dark);color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:12px;z-index:2">${p.badge}</div>` : ''}
+      <img src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=400&q=60'">
+      <button class="wishlist-btn${isWish ? ' active' : ''}" onclick="toggleWish(event,${p.id})">
+        <i class="fa fa-heart"></i>
+      </button>
+    </div>
+    <div class="product-info">
+      <div class="product-name">${p.name}</div>
+      <div class="product-desc">${p.desc.substring(0, 55)}...</div>
+      <div class="product-stars">
+        <span class="stars">★★★★★</span>
+        <span class="review-count">(121)</span>
+      </div>
+      <div class="product-bottom">
+        <div class="product-price">
+          <sup>$</sup>${p.price}<sup style="font-size:9px">.00</sup>
+          ${hasOld ? `<span class="old-price">$${p.oldPrice}</span>` : ''}
+        </div>
+        <button class="btn-cart" onclick="addToCart(event,${p.id})">Add to Cart</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+function renderCategorySection(category, gridId) {
+  const items = products.filter(p => p.category === category);
+  document.getElementById(gridId).innerHTML = items.map(p => productCardHTML(p, false)).join('');
+}
+function renderAllCategorySections() {
+  renderCategorySection('Laptops', 'laptopsGrid');
+  renderCategorySection('Phones', 'phonesGrid');
+  renderCategorySection('Tablets', 'tabletsGrid');
+}
+
+function getPaginatedProducts(sliderKey) {
+  if (sliderKey === 'deals') {
+    return activeFilter === 'All' ? products : products.filter(p => p.category === activeFilter);
+  }
+  if (sliderKey === 'weekly') {
+    if (!window._weeklyOrder) window._weeklyOrder = [...products].sort(() => Math.random() - 0.5);
+    return window._weeklyOrder;
+  }
+  if (sliderKey === 'mostSelling') {
+    return [...products].sort((a,b) => a.stock - b.stock).slice(0, 12);
+  }
+  return products;
+}
+
+function renderPaginatedSlider(sliderKey) {
+  const gridId = sliderKey === 'deals' ? 'dealsGrid' : sliderKey === 'weekly' ? 'weeklyGrid' : 'mostSellingGrid';
+  const navId  = sliderKey === 'deals' ? 'dealsNav'  : sliderKey === 'weekly' ? 'weeklyNav'  : 'mostSellingNav';
+  const prods      = getPaginatedProducts(sliderKey);
+  const page       = pagState[sliderKey].page;
+  const totalPages = Math.ceil(prods.length / PAGE_SIZE);
+  const slice      = prods.slice(page * PAGE_SIZE, page * PAGE_SIZE + PAGE_SIZE);
+  document.getElementById(gridId).innerHTML = slice.map(p => productCardHTML(p, false)).join('');
+  const dots = Array.from({length: totalPages}, (_, i) =>
+    `<button class="pag-dot${i === page ? ' active' : ''}" onclick="goPage('${sliderKey}',${i})"></button>`
+  ).join('');
+  document.getElementById(navId).innerHTML = `
+    <div class="pag-dots">${dots}</div>
+    <button class="pag-btn" onclick="goPage('${sliderKey}',${page - 1})" ${page === 0 ? 'disabled' : ''}>&#8249;</button>
+    <button class="pag-btn" onclick="goPage('${sliderKey}',${page + 1})" ${page >= totalPages - 1 ? 'disabled' : ''}>&#8250;</button>
+  `;
+}
+
+function goPage(sliderKey, page) {
+  const prods = getPaginatedProducts(sliderKey);
+  const totalPages = Math.ceil(prods.length / PAGE_SIZE);
+  if (page < 0 || page >= totalPages) return;
+  pagState[sliderKey].page = page;
+  renderPaginatedSlider(sliderKey);
+}
+
+function renderBrands() {
+  document.getElementById('brandsGrid').innerHTML = brands.map(b => `
+    <div class="brand-card" onclick="scrollToSection('section-${b.name.toLowerCase()}')">
+      <div style="width:48px;height:48px;border-radius:50%;background:${b.color};display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;font-weight:800;flex-shrink:0">${b.letter}</div>
+      <div class="brand-info">
+        <div class="brand-name">${b.name}</div>
+        <div class="brand-sub">${b.sub}</div>
+      </div>
+    </div>`).join('');
+}
+
+function init() {
+  renderAllCategorySections();
+  renderPaginatedSlider('deals');
+  renderPaginatedSlider('weekly');
+  renderPaginatedSlider('mostSelling');
+  renderBrands();
+}
+
+function showAllCategory(cat) {
+  const sectionMap = {'Laptops':'section-laptops','Phones':'section-phones','Tablets':'section-tablets','Accessories':'section-accessories','Gaming':'section-gaming'};
+  if (sectionMap[cat]) scrollToSection(sectionMap[cat]);
+}
+
+function setFilter(cat, el) {
+  activeFilter = cat;
+  document.querySelectorAll('#filterPills .pill').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+  pagState.deals.page = 0;
+  renderPaginatedSlider('deals');
+}
+
+function toggleWish(e, id) {
+  e.stopPropagation();
+  if (wishlist.has(id)) wishlist.delete(id); else wishlist.add(id);
+  renderAllCategorySections();
+  renderPaginatedSlider('deals');
+  renderPaginatedSlider('weekly');
+  renderPaginatedSlider('mostSelling');
+  showToast(wishlist.has(id) ? 'Added to wishlist' : 'Removed from wishlist');
+}
+
+function addToCart(e, id) {
+  e.stopPropagation();
+  const p = products.find(x => x.id === id);
+  const existing = cart.find(x => x.id === id);
+  if (existing) existing.qty++; else cart.push({...p, qty: 1});
+  updateCartUI();
+  showToast(`${p.name} added to cart`);
+}
+function removeFromCart(id) {
+  cart = cart.filter(x => x.id !== id);
+  updateCartUI();
+}
+function changeQty(id, delta) {
+  const item = cart.find(x => x.id === id);
+  if (!item) return;
+  item.qty += delta;
+  if (item.qty <= 0) removeFromCart(id); else updateCartUI();
+}
+function updateCartUI() {
+  const total = cart.reduce((s, i) => s + i.qty, 0);
+  document.getElementById('cartCount').textContent = total;
+  const isEmpty = cart.length === 0;
+  document.getElementById('cartEmpty').style.display = isEmpty ? 'block' : 'none';
+  document.getElementById('cartFooter').style.display = isEmpty ? 'none' : 'block';
+  if (!isEmpty) {
+    const totalPrice = cart.reduce((s, i) => s + (i.price * i.qty), 0);
+    document.getElementById('cartTotal').textContent = '$' + totalPrice.toFixed(2);
+    document.getElementById('cartItems').innerHTML = `
+      <div class="cart-empty" id="cartEmpty" style="display:none"></div>
+      ${cart.map(item => `
+      <div class="cart-item">
+        <img class="cart-item-img" src="${item.img}" alt="${item.name}" onerror="this.src='https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=200&q=60'">
+        <div class="cart-item-info">
+          <h4>${item.name}</h4>
+          <p>${item.desc.substring(0, 40)}...</p>
+          <div class="cart-item-price">$${(item.price * item.qty).toFixed(2)}</div>
+          <div class="qty-ctrl">
+            <button class="qty-btn" onclick="changeQty(${item.id},-1)">−</button>
+            <span class="qty-num">${item.qty}</span>
+            <button class="qty-btn" onclick="changeQty(${item.id},1)">+</button>
+          </div>
+        </div>
+        <button class="cart-item-remove" onclick="removeFromCart(${item.id})"><i class="fa fa-trash"></i></button>
+      </div>`).join('')}`;
+  }
+}
+function toggleCart() {
+  cartOpen = !cartOpen;
+  document.getElementById('cartDrawer').classList.toggle('open', cartOpen);
+  document.getElementById('cartOverlay').classList.toggle('open', cartOpen);
+  document.getElementById('overlay').classList.remove('open');
+  document.getElementById('mobileNav').classList.remove('open');
+}
+function checkout() {
+  if (cart.length === 0) { showToast('Your cart is empty!'); return; }
+  const msg = `Hi WillSir Technologies! I'd like to order:\n${cart.map(i => `- ${i.name} x${i.qty} = $${(i.price * i.qty).toFixed(2)}`).join('\n')}\nTotal: $${cart.reduce((s, i) => s + (i.price * i.qty), 0).toFixed(2)}`;
+  window.open(`https://wa.me/263718756599?text=${encodeURIComponent(msg)}`, '_blank');
+}
+
+function openModal(id) {
+  const p = products.find(x => x.id === id);
+  if (!p) return;
+  document.getElementById('modalMainImg').src = p.imgs[0];
+  document.getElementById('modalThumbs').innerHTML = p.imgs.map((img, i) => `
+    <div class="modal-thumb${i === 0 ? ' active' : ''}" onclick="switchThumb(this,'${img}')">
+      <img src="${img}" alt="">
+    </div>`).join('');
+  const colorDots = p.colors.map((c, i) => `<div class="color-dot${i === 0 ? ' active' : ''}" style="background:${c}" onclick="setActiveColor(this)"></div>`).join('');
+  document.getElementById('modalDetails').innerHTML = `
+    <h2>${p.name}</h2>
+    <div class="modal-stars">
+      <span class="stars" style="font-size:14px">★★★★★</span>
+      <span style="font-size:13px;color:var(--text-muted);margin-left:6px">(121 reviews)</span>
+    </div>
+    <div class="modal-price">
+      <sup style="font-size:14px">$</sup>${p.price}<sup style="font-size:12px">.00</sup>
+      ${p.oldPrice ? `<span class="old">$${p.oldPrice}</span>` : ''}
+      <span class="monthly" style="display:block;margin-top:4px;font-size:13px">or $${(p.price / 6).toFixed(2)}/month with 6 months financing</span>
+    </div>
+    <div class="modal-desc">${p.desc}</div>
+    <div class="modal-colors">
+      <label>Choose a Color</label>
+      <div class="color-dots">${colorDots}</div>
+    </div>
+    <div style="font-size:12.5px;color:var(--red);font-weight:500;margin-bottom:16px">
+      <i class="fa fa-fire" style="margin-right:4px"></i> Only ${p.stock} Items Left! Don't miss it
+    </div>
+    <div class="modal-qty">
+      <label>Qty</label>
+      <div class="qty-ctrl-lg">
+        <button class="qty-btn" onclick="document.getElementById('modalQty').textContent=Math.max(1,parseInt(document.getElementById('modalQty').textContent)-1)">−</button>
+        <span class="qty-num" id="modalQty">1</span>
+        <button class="qty-btn" onclick="document.getElementById('modalQty').textContent=parseInt(document.getElementById('modalQty').textContent)+1">+</button>
+      </div>
+    </div>
+    <div class="modal-btns">
+      <button class="btn-buy" onclick="buyNow(${p.id})">Buy Now</button>
+      <button class="btn-add" onclick="addToCartFromModal(${p.id})">Add to Cart</button>
+    </div>
+    <div class="modal-delivery">
+      <div class="modal-delivery-item">
+        <i class="fa fa-truck"></i>
+        <div><h5>Free Delivery</h5><p>Enter your location for delivery availability</p></div>
+      </div>
+      <div class="modal-delivery-item">
+        <i class="fa fa-undo"></i>
+        <div><h5>Return Delivery</h5><p>7 days easy returns. <a href="#" style="color:var(--green)">Details</a></p></div>
+      </div>
+    </div>`;
+  const related = products.filter(x => x.category === p.category && x.id !== p.id).slice(0, 4);
+  document.getElementById('relatedProducts').innerHTML = `
+    <h3>Related Products</h3>
+    <div class="related-grid">
+      ${related.map(r => `
+      <div class="related-card" onclick="openModal(${r.id})">
+        <div class="ri"><img src="${r.img}" alt="${r.name}" loading="lazy"></div>
+        <h5>${r.name}</h5>
+        <p>${r.category}</p>
+        <div class="rp">$${r.price}.00</div>
+      </div>`).join('')}
+    </div>`;
+  document.getElementById('productModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  document.getElementById('productModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function switchThumb(el, src) {
+  document.getElementById('modalMainImg').src = src;
+  document.querySelectorAll('.modal-thumb').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+}
+function setActiveColor(el) {
+  document.querySelectorAll('.color-dot').forEach(d => d.classList.remove('active'));
+  el.classList.add('active');
+}
+function addToCartFromModal(id) {
+  const qty = parseInt(document.getElementById('modalQty').textContent) || 1;
+  const p = products.find(x => x.id === id);
+  const existing = cart.find(x => x.id === id);
+  if (existing) existing.qty += qty; else cart.push({...p, qty});
+  updateCartUI();
+  showToast(`${p.name} added to cart`);
+  closeModal();
+  setTimeout(() => toggleCart(), 300);
+}
+function buyNow(id) {
+  addToCartFromModal(id);
+  setTimeout(() => checkout(), 400);
+}
+
+function toggleMobileNav() {
+  document.getElementById('mobileNav').classList.toggle('open');
+  document.getElementById('overlay').classList.toggle('open');
+}
+function closeMobileNav() {
+  document.getElementById('mobileNav').classList.remove('open');
+  document.getElementById('overlay').classList.remove('open');
+}
+
+function handleSearch(e) {
+  const q = e.target.value.toLowerCase().trim();
+  if (!q) { renderAllCategorySections(); return; }
+  const filtered = products.filter(p => p.name.toLowerCase().includes(q) || p.category.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q));
+  ['laptopsGrid','phonesGrid','tabletsGrid'].forEach(id => { document.getElementById(id).innerHTML = ''; });
+  document.getElementById('laptopsGrid').innerHTML = filtered.length
+    ? filtered.map(p => productCardHTML(p, false)).join('')
+    : `<div style="grid-column:1/-1;text-align:center;padding:48px;color:var(--text-muted)"><i class="fa fa-search" style="font-size:36px;margin-bottom:12px;display:block"></i><p>No products found for "${e.target.value}"</p></div>`;
+  scrollToSection('section-laptops');
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+function scrollToSection(id) {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({behavior: 'smooth'});
+}
+
+document.getElementById('productModal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+init();
+</script>
+</body>
+</html>
